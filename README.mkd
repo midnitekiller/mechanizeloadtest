@@ -1,27 +1,27 @@
-##Mechanize Load Test for http://www.beamto.us
-#Installing Mechanize
-##Detailed Install and Setup
+#Mechanize Load Test for http://www.beamto.us
+##Installing Mechanize
+###Detailed Install and Setup
 The following instructions are for Debian/Ubuntu Linux. For other platforms, the setup is generaly the same, with the exeption of installing system dependencies.
 
 ##Required
 Multi-Mechanize requires Python 2.6 or 2.7
 
-##System-wide install
-### Install dependencies on Debian/Ubuntu:
+###System-wide install
+#### Install dependencies on Debian/Ubuntu:
 	
 	$ sudo apt-get install python-pip python-matplotlib
 
-### Install multi-mechanize from PyPI using Pip:
+#### Install multi-mechanize from PyPI using Pip:
 	
 	$ sudo pip install -U multi-mechanize
 
-## Virtual + pip install (with matplotlib system package)
+### Virtual + pip install (with matplotlib system package)
 
-### Install dependencies on Debian/Ubuntu:
+#### Install dependencies on Debian/Ubuntu:
 	
 	$ sudo apt-get install python-virtualenv python-matplotlib
 
-### Install multi-mechanize from PyPI in a virtualenv
+#### Install multi-mechanize from PyPI in a virtualenv
 
 	$ virtualenv --system-site-package ENV
 	$ cd ENV
