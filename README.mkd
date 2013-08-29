@@ -1,5 +1,5 @@
 ##Mechanize Load Test for http://www.beamto.us
-Installing Mechanize
+#Installing Mechanize
 ##Detailed Install and Setup
 The following instructions are for Debian/Ubuntu Linux. For other platforms, the setup is generaly the same, with the exeption of installing system dependencies.
 
