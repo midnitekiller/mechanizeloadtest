@@ -1,35 +1,4 @@
-#Mechanize Load Test for http://www.beamto.us
-##Installing Mechanize
-###Detailed Install and Setup
-The following instructions are for Debian/Ubuntu Linux. For other platforms, the setup is generaly the same, with the exeption of installing system dependencies.
-
-##Required
-Multi-Mechanize requires Python 2.6 or 2.7
-
-###System-wide install
-#### Install dependencies on Debian/Ubuntu:
-	
-	$ sudo apt-get install python-pip python-matplotlib
-
-#### Install multi-mechanize from PyPI using Pip:
-	
-	$ sudo pip install -U multi-mechanize
-
-### Virtual + pip install (with matplotlib system package)
-
-#### Install dependencies on Debian/Ubuntu:
-	
-	$ sudo apt-get install python-virtualenv python-matplotlib
-
-#### Install multi-mechanize from PyPI in a virtualenv
-
-	$ virtualenv --system-site-package ENV
-	$ cd ENV
-	$ source bin/activate
-	(ENV)$ pip install multi-mechanize
-
-
-
+##Mechanize Load Test for http://www.beamto.us
 Requires [multi-mechanize](https://github.com/cgoldberg/multi-mechanize).
 
 ###Instructions:
@@ -37,3 +6,143 @@ Requires [multi-mechanize](https://github.com/cgoldberg/multi-mechanize).
 		$ multimech-run beamtous
 
 Submitting a Load Testing Script by Lief Jill Colegado
+
+===============================================================
+
+Mechanize Installation
+
+Installation Requirements:
+
+Linux Debian Distribution: 
+	Tested on Ubuntu 12.04 
+	
+	Run as root : sudo su
+
+	Perform updates and upgrades : 
+		sudo apt-get update
+		sudo apt-get upgrade
+
+Requires: Python 2.6 or 2.7 
+
+virtualenv is a tool to create isolated Python environments.
+
+System-wide install
+	
+	install dependencies on Debian/Ubuntu:
+	sudo apt-get install python-pip python-matplotlib
+
+	install multi-mechanize from PyPI using Pip:
+	sudo pip install -U multi-mechanize
+
+Virtualenv + pip install (with matplotlib system package)
+	
+	install dependencies on Debian/Ubuntu:
+	sudo apt-get install python-virtualenv python-matplotlib
+
+	install multi-mechanize from PyPI in a virtualenv:
+	$ virtualenv --system-site-packages ENV
+	$ cd ENV
+	$ source bin/activate
+	(ENV)$ pip install multi-mechanize
+
+Virtualenv + pip install (with no-site-packages)
+
+	install dependencies on Debian/Ubuntu:
+	sudo apt-get install build-essential libfreetype6-dev libpng-dev
+	sudo apt-get install python-dev python-virtualenv
+
+	install multi-mechanize and matplotlib from PyPI in a virtualenv:
+	virtualenv ENV
+ 	cd ENV
+	source bin/activate
+	(ENV)$ pip install multi-mechanize
+	(ENV)$ pip install matplotlib
+====================================================================
+
+Usage Instructions
+
+	Create a Project
+	Create a new test project with multimech-newproject:
+	$ multimech-newproject my_project
+
+	Each test project contains the following:
+
+	config.cfg: configuration file. set your test options here.
+	test_scripts/: directory for virtual user scripts. add your test scripts here.
+	results/: directory for results storage. a timestamped directory is created for each test run, containing the results report.
+	multimech-newproject will create a mock project, using a single script that generates random timer data. Check it out for a basic example.
+
+	Run a Project
+	Run a test project with multimech-run:
+	$ multimech-run my_project
+
+	for test configuration options, see http://testutils.org/multi-mechanize/configfile.html#config-label
+	a timestamped results directory is created for each test run, containing the results report.
+
+	Note: for this project. 
+
+
+====================================================================
+
+Configuration
+
+Config File (config.cfg)
+
+	Each project contains a config.cfg file where test settings are defined.
+	The config file contains a [global] section and [user_group-*] sections.
+
+Minimal Configuration
+	Here is a sample config.cfg file showing minimal options, defining 1 group of virtual users:
+
+	[global]
+	run_time = 100
+	rampup = 100
+	results_ts_interval = 10
+
+	[user_group-1]
+	threads = 10
+	script = vu_script.py
+
+Full Configuration
+	Here is a sample config.cfg file showing all possible options, defining 2 groups of virtual users:
+
+	[global]
+	run_time = 300
+	rampup = 300
+	results_ts_interval = 30
+	progress_bar = on
+	console_logging = off
+	xml_report = off
+	results_database = sqlite:///my_project/results.db
+	post_run_script = python my_project/foo.py
+
+	[user_group-1]
+	threads = 30
+	script = vu_script1.py
+
+	[user_group-2]
+	threads = 30
+	script = vu_script2.py
+
+Global Options
+	The following settings/options are available in the [global] config section:
+
+	run_time: duration of test (seconds) [required]
+	rampup: duration of user rampup (seconds) [required]
+	results_ts_interval: time series interval for results analysis (seconds) [required]
+	progress_bar: turn on/off console progress bar during test run [optional, default = on]
+	console_logging: turn on/off logging to stdout [optional, default = off]
+	xml_report: turn on/off xml/jtl report [optional, default = off]
+	results_database: database connection string [optional]
+	post_run_script: hook to call a script at test completion [optional]
+
+User Groups
+	The following settings/options are available in each [user_group-*] config section:
+
+	threads: number of threads/virtual users
+	script: virtual user test script to run
+
+For more Scripting. Visit http://testutils.org/multi-mechanize/scripts.html
+
+===============================================================================
+
