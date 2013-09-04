@@ -5,7 +5,7 @@ Requires [multi-mechanize](https://github.com/cgoldberg/multi-mechanize).
 	Just run 
 		$ multimech-run beamtous
 
-Submitting a Load Testing Script by Lief Jill Colegado
+
 
 ===============================================================
 
